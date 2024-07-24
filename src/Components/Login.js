@@ -1,18 +1,8 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik"; // import Formik from formik
-import * as Yup from "yup"; // import Yup from yup
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../Hooks/useLocalStorage";
 
-// create a schema for Email and Password validation
-const schema = Yup.object().shape({
-  email: Yup.string()
-    .required("Email is a required")
-    .email("Enter Valid Email"),
-  password: Yup.string()
-    .required("Password is a required")
-    .min(8, "Password must be 8 characters long"),
-});
 
 const Login = () => {
   const navigate = useNavigate();
@@ -54,7 +44,6 @@ const Login = () => {
     <>
       {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
       <Formik
-        validationSchema={schema}
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
           // invoke handleNavigate function and pass input filed data
