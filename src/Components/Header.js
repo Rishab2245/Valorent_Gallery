@@ -1,4 +1,4 @@
-import foodFireLogo from "../Images/foodFireLogo.png";
+import valologo from '../Images/valologoheader.png'
 import { Link } from "react-router-dom"; // imported Link for client side routing
 import { useNavigate } from "react-router-dom";
 import useOnline from "../Hooks/useOnline";
@@ -9,12 +9,6 @@ import { useEffect } from "react";
 // Title component for display logo
 const Title = () => (
   <Link to="/">
-    {/* <img
-      className="logo"
-      src={foodFireLogo}
-      alt="Food Fire"
-      title="Food Fire"
-    /> */}
     <h1>LOGO</h1>
   </Link>
 );
@@ -22,7 +16,7 @@ const Title = () => (
 // Header component for header section: Logo, Nav Items
 const Header = () => {
   const navigate = useNavigate();
-  
+
   // call custom hook useLocalStorage for getting localStorage value of user
   const [getLocalStorage, , clearLocalStorage] = useLocalStorage("user");
 

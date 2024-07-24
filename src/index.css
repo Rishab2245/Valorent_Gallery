@@ -95,13 +95,9 @@ a {
   padding-top: 15%;
 }
 
-.nav-items > ul > li:hover,
-.nav-items > ul > li:hover .logout-btn,
-.nav-items > ul > li:hover .login-btn {
-  background-color: var(--orange);
-  border-radius: 5px;
+.nav-items > ul > li:hover {
+  border-bottom: 0.2rem solid var(--orange) ;
   cursor: pointer;
-  color: var(--white);
 }
 
 .nav-items > ul > li .logout-btn,
@@ -115,10 +111,6 @@ a {
   cursor: pointer;
 }
 
-.nav-items > ul > li .logout-btn:hover,
-.nav-items > ul > li .login-btn:hover {
-  color: var(--white);
-}
 
 .login-btn-green {
   color: var(--light-green);
@@ -223,7 +215,8 @@ a {
   text-overflow: ellipsis;
 }
 
-.card > img {
+.card  .valoimg  {
+  height: 12rem;
   width: 100%;
   border-radius: 10px;
 }
@@ -620,7 +613,7 @@ a {
 /* Error page CSS Start */
 .error-page {
   text-align: center;
-  background-color: var(--body-bg-color);
+  background-color: #ffffff;
   height: 100vh;
   width: auto;
 }

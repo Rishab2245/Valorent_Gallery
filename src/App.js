@@ -11,29 +11,13 @@ import Error from "./Components/Error";
 import Contact from "./Components/Contact";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
-import RestaurantMenu from "./Components/RestaurantMenu";
 import Profile from "./Components/ProfileClass";
+import AddCard from "./Components/AddCard";
+import Error from "./Components/Error";
+
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; // for routing our page import createBrowserRouter and RouterProvider for providing router & Outlet for children component for nested routing
 
-/* My Food App structure will look like this, 
-            1) Header
-                - Logo
-                - Nav Items(right side)
-                - Cart
-            2) Body
-                - Search bar
-                - Restaurants List
-                    - Restaurant card
-                        - Image
-                        - Name
-                        - Rating
-            3) Footer
-                - Links
-                - Copyrights
-       
-*/
-
-// AppLayout component to render: Header, Outlet(it contain children component like body, About, Restaurant Menu etc) and Footer Component
+// AppLayout  component to render: Header, Outlet(it contain children component like body, About) and Footer Component
 const AppLayout = () => {
   return (
     <React.Fragment>
@@ -76,16 +60,16 @@ const appRouter = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
-      },
-      {
-        path: "restaurant/:resId",
-        element: <RestaurantMenu />,
-      },
+      }
     ],
   },
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "AddCard",
+    element: <AddCard />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
