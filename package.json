@@ -46,5 +46,11 @@
   },
   "browserslist": [
     "last 10 versions"
-  ]
+  ],
+  
+    "routes": [
+      { "source": "/(.*)", "destination": "/" }
+    ]
+  
+  
 }
