@@ -1,11 +1,6 @@
-## Namaste React Course by Akshay Saini
-# Chapter 09 - Optimizing our App
+## Valo G
+# A Image Gallery website for displaying the valorent game related content
 
 
-## Coding Assignment:
-- Create your `custom hooks`.
-- Try out `lazy and suspense`
-- Make your `code clean`.
 
-
-## Created a FoodFire App from scratch using React.js and Parcel.js 🚀 [Live Project App Link 😍](https://foodfire-chapter09.netlify.app/)
+## Created a Valorent gallery website from scratch using React.js and Parcel.js 🚀 [Live Project App Link 😍](https://github.com/Rishab2245/Valorent_Gallery)

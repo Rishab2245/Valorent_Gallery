@@ -1,7 +1,7 @@
 {
-  "name": "namaste-react",
+  "name": "valorent-gallery",
   "version": "1.0.0",
-  "description": "This is a live Course",
+  "description": "valo gallery for the guns showcase",
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chetannada/Namaste-React.git"
+    "url": "git+https://github.com/Rishab2245/Valorent_Gallery"
   },
-  "author": "Chetan Nada",
+  "author": "rishab chaudhary",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chetannada/Namaste-React/issues"
+    "url": "https://github.com/Rishab2245/Valorent_Gallery/issues"
   },
-  "homepage": "https://github.com/chetannada/Namaste-React#readme",
+  "homepage": "https://github.com/Rishab2245/Valorent_Gallery#readme",
   "devDependencies": {
     "buffer": "^5.7.1",
     "crypto-browserify": "^3.12.0",
