@@ -34,6 +34,7 @@
   "dependencies": {
     "@cloudinary/react": "^1.13.0",
     "@cloudinary/url-gen": "^1.19.0",
+    "@emailjs/browser": "^4.4.1",
     "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -47,10 +48,10 @@
   "browserslist": [
     "last 10 versions"
   ],
-  
-    "routes": [
-      { "source": "/(.*)", "destination": "/" }
-    ]
-  
-  
+  "routes": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }

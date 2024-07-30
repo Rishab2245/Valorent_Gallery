@@ -1,5 +1,7 @@
-import RestaurantCard from "./RestaurantCard";
+import Card from "./Card.js";
+import { WithRemoveCard } from "./Card.js";
 import { useState } from "react"; /* This is named export */
+import { useLocation } from "react-router-dom";
 import Shimmer from "./Shimmer"; /* This is default export */
 import { GETALL_CARD_API } from "../Common/constants";
 import { Link } from "react-router-dom";
@@ -7,21 +9,38 @@ import { filterData } from "../Utils/Helper"; // For reusability or readability 
 import useCardData from "../Hooks/useCardData.js";
 import useOnline from "../Hooks/useOnline"; // imported custom hook useOnline which checks user is online or not
 import UserOffline from "./UserOffline";
+import useAuth from "../Hooks/useAuth.js";
+
+import AddCard from "./AddCard.js";
+import { useEffect } from "react";
+
+
+const EditableCard = WithRemoveCard(Card);
 
 // Body Component for body section: It contain all restaurant cards
 const Body = () => {
   // useState: To create a state variable, searchText, AllCards and filteredCards is local state variable
   const [searchText, setSearchText] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [AllCards,FilterCards] = useCardData(GETALL_CARD_API);
+  const location = useLocation();
+  const [isAdd ,setisAdd] = useState(false);
+  const [cardCreated , setCardCreated] = useState(false);
+  const [cardRemoved , setCardRemoved] = useState(false);
+  const [AllCards,FilterCards] = useCardData(GETALL_CARD_API , cardCreated , setCardCreated , cardRemoved , setCardRemoved);
   const [filteredCards, setFilteredCards] = useState(null);
-  console.log(FilterCards  , "filterCards" , "filteredCards" , filteredCards);
+  // console.log(FilterCards  , "filterCards" , "filteredCards" , filteredCards);
   const isOnline = useOnline();
+  const [isLoggedin, setIsLoggedin] = useAuth();
+
+
+
+ 
 
   // if user is not Online then return UserOffline component
   if (!isOnline) {
     return <UserOffline />;
   }
+
 
   // use searchData function and set condition if data is empty show error message
   const searchData = (searchText, Cards) => {
@@ -46,7 +65,7 @@ const Body = () => {
   return (
     <div className="body-container">
       <div className="search-container">
-        <input
+        <div><input
           type="text"
           className="search-input"
           placeholder="Search a card you want..."
@@ -66,8 +85,18 @@ const Body = () => {
           }}
         >
           Search
-        </button>
+        </button></div>
+        {isLoggedin && (
+        <div>
+        <button id="add" className="search-btn" onClick={()=>{
+            setisAdd(!isAdd);
+        }}>Add</button>
       </div>
+        )}
+      </div>
+      {isAdd && (<div className="addCard">
+        <AddCard setisAdd={setisAdd} setCardCreated={setCardCreated}/>
+      </div>)}
       {errorMessage && <div className="error-container">{errorMessage}</div>}
           
       {/* if Cards data are fetched then display Cards cards otherwise display Shimmer UI */}
@@ -75,16 +104,13 @@ const Body = () => {
         <Shimmer />
       ) : (
         <div className="restaurant-list">
-
           {(filteredCards === null ? FilterCards : filteredCards).map(
             (card) => {
               return (
-                <Link
-                  key={card?._id}
-                >
-                  {/* if we click on any restaurant card it will redirect to that restaurant menu page */}
-                  <RestaurantCard {...card} />
-                </Link>
+                 <div key={card?._id}>
+                   {isLoggedin ? (<EditableCard setCardRemoved={setCardRemoved} {...card}/>) : (<Card {...card} />)}
+                 </div>
+                  
               );
             }
           )}
@@ -95,3 +121,5 @@ const Body = () => {
 };
 
 export default Body;
+
+

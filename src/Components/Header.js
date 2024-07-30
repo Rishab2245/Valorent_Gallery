@@ -42,18 +42,24 @@ const Header = () => {
       )}
       <div className="nav-items">
         <ul>
+        {!isLoggedin && (
+        <li>
+        <Link to="/">Home</Link>
+        </li>
+        )}
           <li>
-            <Link to="/">Home</Link>
+            <Link to={isLoggedin?"/admin/EYC":"/EYC"}>EYC</Link>
           </li>
-          <li>
-            <Link to="/EYC">EYC</Link>
-          </li>
+          {!isLoggedin && (
           <li>
             <Link to="/about">About</Link>
           </li>
+          )}
+          {!isLoggedin && (
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+          )}
           <li><i class="fa-solid fa-moon"></i></li>
           <li>
             {/* use conditional rendering for login and logout */}
@@ -63,6 +69,7 @@ const Header = () => {
                 onClick={() => {
                   clearLocalStorage();
                   setIsLoggedin(false);
+                  navigate("/EYC")
                 }}
               >
                 Logout

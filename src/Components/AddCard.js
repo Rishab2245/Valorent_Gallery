@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../Hooks/useLocalStorage";
 import { ADD_CARD_API } from "../Common/constants";
 
-const AddCard = ()=>{
+const AddCard = ({setisAdd , setCardCreated})=>{
     const [getLocalStorage, setLocalStorage] = useLocalStorage("user");
     const [cardName, setcardName] = useState("");
     const [cardDiscription, setcardDiscription] = useState("");
@@ -40,13 +40,28 @@ const AddCard = ()=>{
     const Submit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(ADD_CARD_API, {
-                "cardName": cardName,
-                "cardDiscription": cardDiscription,
-                "cardImg": Image,
-            })
-
+            const response = await axios.post(
+                ADD_CARD_API,
+                {
+                  "cardName": cardName,
+                  "cardDiscription": cardDiscription,
+                  "cardImg": Image
+                },
+                {
+                  headers: {
+                    'Authorization': getLocalStorage?.token
+                  }
+                }
+              );
+              
+            // if(response.statusCode == 201){
+                
+            // }
             console.log(response);
+            setCardCreated(response.data.success);
+            setisAdd(false);
+
+            
             // const token = "token";
             // console.log("Data : ",response.data.user._id);
             // const id = "1"; 
@@ -61,18 +76,20 @@ const AddCard = ()=>{
     }
 
     return (
-    <div className="addContainer">
-           <form className="addCard-form" onSubmit={Submit}>
+    <div className="addContainer body-container">
+           <form className="addCard-form " onSubmit={Submit}>
                     <h2>Add Card</h2>
-                    <input type="text" className="cardName-input" placeholder="Card Name" onChange={HandleChange} name="cardName" autoComplete="off" value={cardName} />
-                    <br />
-                    <input type="text" className="cardDiscription-input" placeholder="card Discription" onChange={HandleChange} name="cardDiscription" value={cardDiscription} />
-                    <br />
-                    <br />
-                    <input type="file" className="file-input" placeholder="card Image" onChange={HandleChange} name="cardImage" accept="image/png , image/jpeg , image/jpg"/>
-                    <br />
-                    <img src={Image} alt="cardImage"/>
-                    <button type="submit">Add</button>
+                    <div className="input">
+                    <input type="text" className="field" placeholder="Card Name" onChange={HandleChange} name="cardName" autoComplete="off" value={cardName} />
+                    
+                    <input type="text" className="field" placeholder="card Discription" onChange={HandleChange} name="cardDiscription" value={cardDiscription} />
+                    
+                    <input type="file" className="field" placeholder="card Image" onChange={HandleChange} name="cardImage" accept="image/png , image/jpeg , image/jpg"/>
+                    
+                    {/* <img src={Image} alt="cardImage"/> */}
+                    <button type="submit">Add Card</button>
+                    </div>
+                    <br></br>
                     {display &&(
                         <h3>Please Enter Valid Credentials</h3>
                     )}

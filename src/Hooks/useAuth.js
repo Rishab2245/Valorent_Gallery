@@ -6,7 +6,7 @@ const useAuth = () => {
     const [getLocalStorage] = useLocalStorage("user");
 
     // use useState for user logged in or logged out
-    const [isLoggedin, setIsLoggedin] = useState(getLocalStorage?.token?.length === 100 ? true : false);
+    const [isLoggedin, setIsLoggedin] = useState(getLocalStorage?.token ? true : false);
 
     return [isLoggedin, setIsLoggedin];
 }

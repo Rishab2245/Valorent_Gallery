@@ -14,6 +14,7 @@ import Login from "./Components/Login";
 import Profile from "./Components/ProfileClass";
 import AddCard from "./Components/AddCard";
 import Error from "./Components/Error";
+import Admin from "./Components/Admin";
 
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; // for routing our page import createBrowserRouter and RouterProvider for providing router & Outlet for children component for nested routing
 
@@ -66,6 +67,19 @@ const appRouter = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "admin",
+    element: <Admin />,
+    errorElement: <Error />, // show error component for path is different
+    children: [{
+      path: "Home",
+      element:<Home />,
+    },
+    {
+      path: "EYC",
+      element:<Body />,
+    }]
   },
   {
     path: "AddCard",

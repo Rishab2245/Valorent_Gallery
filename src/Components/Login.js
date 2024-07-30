@@ -1,104 +1,78 @@
 import React, { useEffect } from "react";
 import { Formik } from "formik"; // import Formik from formik
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import useLocalStorage from "../Hooks/useLocalStorage";
-
+import { USER_LOGIN_API } from "../Common/constants";
+import axios from "axios";
 
 const Login = () => {
+
+  const [email, setMail] = useState("");
+  const [password, setPassword] = useState("");
+  const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
-  // call custom hook useLocalStorage for getting localStorage value of user
+
   const [getLocalStorage, setLocalStorage] = useLocalStorage("user");
 
   useEffect(() => {
     // if length of token is equal to 100 then navigate to previous page
-    if (getLocalStorage?.token?.length === 100) {
-      navigate(-1);
+    if (getLocalStorage?.token) {
+      navigate('/admin/Home');
     }
   }, []);
-
-  function handleNavigate(values) {
-    let index = values?.email.indexOf('@');
-    let name = values?.email.slice(0, index);
-
-    // generate 100 character random string
-    const genRandomStringNthChar = () => {
-      return [...Array(100)]
-        .map(() => Math.random().toString(36)[2])
-        .join("");
-    };
-
-    // store userName and token in localStorage
-    setLocalStorage({
-      ...getLocalStorage,
-      "userName": name,
-      "token": genRandomStringNthChar()
-    })
-    // navigate to previous page
-    navigate(-1);
+  if (getLocalStorage?.token) {
+    navigate('/admin/Home');
   }
+  const HandleChange = (e) => {
+      const { name, value } = e.target;
+      if (name === 'email') {
+          setMail(value);
+      }
+      if (name === 'password') {
+          setPassword(value);
+      }
+  }
+  const Submit = async (e) => {
+      e.preventDefault();
+      try {
+          const response = await axios.post(USER_LOGIN_API, {
+              "email": email,
+              "password": password,
+          })
+          let index = email.indexOf('@');
+          let name = email.slice(0, index);
+          const token = response.headers.get('Authorization');
+          console.log("token" , token);
 
-  // if length of token is equal to 100 then return null
-  if (getLocalStorage?.token?.length === 100) return null;
+          setLocalStorage({
+            ...getLocalStorage,
+            "userName": name,
+            "token": token 
+          })
+          navigate(`/admin/Home`);
+      }
+      catch (error) {
+          console.error(error);
+          setDisplay(true);
+      }
+  }
 
   return (
     <>
-      {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => {
-          // invoke handleNavigate function and pass input filed data
-          handleNavigate(values);
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-        }) => (
-          <div className="login-container">
-            <div className="login-form">
-              {/* Passing handleSubmit parameter to html form onSubmit property */}
-              <form noValidate onSubmit={handleSubmit}>
-                <span>Login</span>
-                {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  placeholder="Enter your email"
-                  className="form-control inp_text"
-                  id="email"
-                />
-                {/* If validation is not passed show errors */}
-                <p className="error">
-                  {errors.email && touched.email && errors.email}
-                </p>
-                {/* input with passing formik parameters like handleChange, values, handleBlur to input properties */}
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  placeholder="Enter your password"
-                  className="form-control"
-                />
-                {/* If validation is not passed show errors */}
-                <p className="error">
-                  {errors.password && touched.password && errors.password}
-                </p>
-                {/* Click on submit button to submit the form */}
-                <button type="submit">Login</button>
-              </form>
-            </div>
-          </div>
-        )}
-      </Formik>
+      <div className="login-container">
+           <form className="login-form" onSubmit={Submit}>
+                    <h2>Login</h2>
+                    <input type="email" className="form-control inp_text" placeholder="Enter your email" onChange={HandleChange} name="email" autoComplete="off" value={email} />
+                    
+                    <input type="password" className="form-control" placeholder="Enter your password" onChange={HandleChange} name="password" value={password} />
+                   
+                    <button type="submit">Login</button>
+                    {display &&(
+                        <h3>Please Enter Valid Credentials</h3>
+                    )}
+            </form>
+    </div>
     </>
   );
 };

@@ -19,7 +19,7 @@ const useLocalStorage = (key) => {
     const setLocalStorage = (value) => {
         localStorage.setItem(key, JSON.stringify(value))
     }
-
+    
     // clear value in localStorage
     const clearLocalStorage = () => {
         localStorage.clear();

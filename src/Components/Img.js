@@ -5,7 +5,7 @@ import {Cloudinary} from "@cloudinary/url-gen";
 // Import required actions.
 import {sepia} from "@cloudinary/url-gen/actions/effect";
 
-export default  Img = ({cardImg}) => {
+const Img = ({cardImg}) => {
 
   // Create and configure your Cloudinary instance.
   const cld = new Cloudinary({
@@ -17,8 +17,6 @@ export default  Img = ({cardImg}) => {
   // Use the image with public ID, 'front_face'.
   const myImage = cld.image(cardImg);
 
-
-console.log(myImage);
   // Render the transformed image in a React component.
   return (
     <div>
@@ -26,3 +24,5 @@ console.log(myImage);
     </div>
   )
 };
+
+export default Img;

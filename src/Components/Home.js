@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 
 const Home = () => {
-
+    const [isLoggedin, setIsLoggedin] = useAuth();
     return (
         <div className="home">
             <div>
@@ -11,7 +12,7 @@ const Home = () => {
                 <p>lorem ipsem Lorem Ipsum Lorem ipsum is placeholder text  lorem lorem lorem</p>
             </div>
             
-                <Link to="/EYC"><button>SEE SKINS</button></Link>
+                <Link to={isLoggedin ? "/admin/EYC" : "/EYC"}><button>SEE SKINS</button></Link>
             
         </div>
     )
