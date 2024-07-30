@@ -4,6 +4,7 @@
   "description": "valo gallery for the guns showcase",
   "scripts": {
     "start": "parcel index.html",
+    "dev": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest"
   },
