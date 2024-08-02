@@ -10,7 +10,7 @@ import { useEffect } from "react";
 const Title = () => {
   const [isLoggedin, setIsLoggedin] = useAuth();
 
-  return (<Link to={isLoggedin?"/admin/":"/"}>
+  return (<Link to={isLoggedin?"/admin/Home":"/"}>
     <img className='logo' src={valologo} alt='valorentgallary logo'></img>
   </Link>)
 }
