@@ -46,7 +46,7 @@ const Contact = () => {
           <textarea placeholder="Type your Message here..." name="message" required></textarea>
           <button type="submit">Submit</button>
           {message && (
-            <span>Thanks for contacting FoodFire, We will reply ASAP.</span>
+            <span>Thanks for contacting Eternal Store, We will reply ASAP.</span>
           )}
           {error && (
             <span>email can't be sent due to some issue in service</span>

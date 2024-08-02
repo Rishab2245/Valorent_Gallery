@@ -1,7 +1,7 @@
 {
-  "name": "valorent-gallery",
+  "name": "Eternal-Store",
   "version": "1.0.0",
-  "description": "valo gallery for the guns showcase",
+  "description": "ETERNAL STORE - THE ONE STOP SHOP FOR VALO SKINS",
   "scripts": {
     "start": "parcel index.html",
     "dev": "parcel index.html",

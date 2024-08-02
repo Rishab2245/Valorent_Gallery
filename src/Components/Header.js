@@ -1,4 +1,4 @@
-import valologo from '../Images/valologoheader.png'
+import valologo from '../Images/valologo.jpg'
 import { Link } from "react-router-dom"; // imported Link for client side routing
 import { useNavigate } from "react-router-dom";
 import useOnline from "../Hooks/useOnline";
@@ -7,11 +7,13 @@ import useLocalStorage from "../Hooks/useLocalStorage";
 import { useEffect } from "react";
 
 // Title component for display logo
-const Title = () => (
-  <Link to="/">
-    <h1>LOGO</h1>
-  </Link>
-);
+const Title = () => {
+  const [isLoggedin, setIsLoggedin] = useAuth();
+
+  return (<Link to={isLoggedin?"/admin/":"/"}>
+    <img className='logo' src={valologo} alt='valorentgallary logo'></img>
+  </Link>)
+}
 
 // Header component for header section: Logo, Nav Items
 const Header = () => {

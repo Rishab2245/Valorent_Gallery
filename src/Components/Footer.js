@@ -15,12 +15,12 @@ const Footer = () => {
       <i className="fa-solid fa-copyright"></i>
       {year}
       <a
-        href="https://github.com/rishab2245/"
+        href="https://github.com/rishab2245/valogallery_backend"
         target="_blank"
         title="Valo Github Repository"
       >
         <strong>
-          Valo<span>Gallery</span>
+        Eternal<span>Store</span>
         </strong>
       </a>
     </div>
