@@ -3,11 +3,14 @@ Select all CSS Start
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "PT Sans", Calibri, sans-serif;
+
   overflow-x: hidden;
 }
 
 /* all link CSS */
+
+
+
 a {
   text-decoration: none;
   color: inherit;
@@ -50,6 +53,7 @@ a {
   justify-content: space-between;
   min-height: 100vh;
   background-color: var(--light-gray);
+  font-family: "Roboto", sans-serif;
 }
 
 /* Header CSS Start*/
@@ -69,7 +73,7 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 99999999999;
   overflow-y: hidden;
 }
 
@@ -176,6 +180,7 @@ a {
 }
 
 .search-container .search-input {
+  font-family: "Roboto", sans-serif;
   width: 30rem;
   box-sizing: border-box;
   border-bottom-left-radius: 5px;
@@ -322,6 +327,7 @@ a {
   color: white;
   cursor: pointer;
   left: 1rem;
+  z-index:99999;
   
 }
 .cross:hover{
@@ -1120,30 +1126,42 @@ a {
 
 /* Login page CSS Start */
 .login-container {
-  width: 380px;
-  margin: 40px auto 0;
+  width: 100%;
+  height: 100vh;
+display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f2eb;
+  font-family: "Roboto", sans-serif;
 }
 
 .login-form {
   position: relative;
   z-index: 1;
-  background: var(--light-orange);
+  background: var(--white);
   border-radius: 10px;
   max-width: 380px;
+  margin: 1rem;
   padding: 25px 40px;
   text-align: center;
+}
+.login-form h4{
+color: rgb(104, 104, 104);
 }
 
 .login-form input {
   outline: 0;
-  background: var(--input-bg);
+  /* background: var(--input-bg); */
   width: 100%;
-  border: 0;
+  /* border:1px solid rgb(104, 104, 104); */
   border-radius: 5px;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+  border: 0;
+  box-shadow: 0px 0px 3px rgb(220, 220, 220);
+
 }
 
 .login-form input:focus {
@@ -1153,20 +1171,23 @@ a {
 .login-form button {
   text-transform: uppercase;
   outline: 0;
-  background: #4b6cb7;
+  background: #fec887;
   width: 100%;
   border: 0;
   border-radius: 5px;
   padding: 15px;
-  color: #ffffff;
+  color: black;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
+.login-form button:hover{
+  background: var(--gray);
+}
 
 .login-form button:active {
-  background: #395591;
+  background: #f6f2eb;
 }
 
 .login-form span {
@@ -1502,7 +1523,7 @@ text-align: center;
   }
 
   .login-container {
-    width: 310px;
+    /* width: 310px; */
   }
 
   .login-form {
@@ -1593,7 +1614,7 @@ text-align: center;
   }
 
   .login-container {
-    width: 280px;
+    /* width: 280px; */
   }
 
   .login-form {

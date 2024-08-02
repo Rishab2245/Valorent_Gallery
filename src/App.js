@@ -81,10 +81,6 @@ const appRouter = createBrowserRouter([
       element:<Body />,
     }]
   },
-  {
-    path: "AddCard",
-    element: <AddCard />,
-  },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={appRouter} />); // render RouterProvider and use router as props and pass value appRouter

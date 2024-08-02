@@ -62,12 +62,13 @@ const Login = () => {
     <>
       <div className="login-container">
            <form className="login-form" onSubmit={Submit}>
-                    <h2>Login</h2>
-                    <input type="email" className="form-control inp_text" placeholder="Enter your email" onChange={HandleChange} name="email" autoComplete="off" value={email} />
+                    <h2>Admin Login</h2>
+                    <h4>Hey,Enter your details to get sign in to your account</h4>
+                    <input type="email" className="form-control" placeholder="Enter your email" onChange={HandleChange} name="email" autoComplete="off" value={email} />
                     
                     <input type="password" className="form-control" placeholder="Enter your password" onChange={HandleChange} name="password" value={password} />
                    
-                    <button type="submit">Login</button>
+                    <button type="submit" >Login</button>
                     {display &&(
                         <h3>Please Enter Valid Credentials</h3>
                     )}
