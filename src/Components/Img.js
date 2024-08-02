@@ -1,7 +1,7 @@
 import React from 'react'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
-import { CLOUD_NAME } from '../Common/constants';
+import { CLOUD_NAME } from '../Common/constants.js';
 
 // Import required actions.
 import {sepia} from "@cloudinary/url-gen/actions/effect";
